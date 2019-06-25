@@ -1,5 +1,6 @@
 const Types = {
-    FETCH_TICKERS: "FETCH_TICKERS"
+    FETCH_TICKERS: "FETCH_TICKERS",
+    FETCH_TICKER_DETAILS: "FETCH_TICKER_DETAILS"
 };
 
 export interface TickerAction {
@@ -14,7 +15,15 @@ const fetchTickers = (tickers: any): TickerAction => {
     }
 };
 
+const fetchTickerDetails = (tickerDetails: any): TickerAction => {
+    return {
+        type: Types.FETCH_TICKER_DETAILS,
+        result: tickerDetails
+    }
+}
+
 export default {
     fetchTickers,
+    fetchTickerDetails,
     Types
 }
