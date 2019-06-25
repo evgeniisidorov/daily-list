@@ -2,11 +2,11 @@ import actions from "../reducers/actions";
 
 export interface ITickerService {
     fetchTickers: (url: string) => any;
-    // fetchTickersDetails: (url: string, tickers: string[]) => any;
+    fetchTickerDetails: (url: string) => any;
 }
 
 export class TickerServiceImplementation implements ITickerService {
-    validateResponse(response: Response): Promise<any> {
+    private validateResponse(response: Response): Promise<any> {
         if (response.ok && response.status >= 200 && response.status < 300) {
             return Promise.resolve(response);
         } else {
@@ -14,7 +14,7 @@ export class TickerServiceImplementation implements ITickerService {
         }
     }
 
-    readData(
+    private readData(
         response: Response, type: XMLHttpRequestResponseType
     ): Promise<any> {
         const contentType = response.headers.get('content-type');
@@ -32,7 +32,7 @@ export class TickerServiceImplementation implements ITickerService {
         }
     }
 
-    fetchUrl(
+    private fetchUrl(
         url: string,
         responseType: XMLHttpRequestResponseType = 'json'
     ): Promise<any> {
@@ -47,6 +47,13 @@ export class TickerServiceImplementation implements ITickerService {
             return this.fetchUrl(url)
                 .then((items) => dispatch(actions.fetchTickers(items)))
                 .catch(error => console.log('failure'));
+        }
+    }
+
+    fetchTickerDetails = (url: string) =>{
+        return (dispatch: any) => {
+            return this.fetchUrl(url)
+            .then((items ) => dispatch(actions.fetchTickerDetails(items)))
         }
     }
 }
