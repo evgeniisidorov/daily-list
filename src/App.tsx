@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { TIckerListContainer } from './components/TickerList/TickerListContainer';
+import { TickerListContainer } from './components/TickerList/TickerListContainer';
+import { StarredListContainer } from './components/StarredList/StarredListContainer';
 
 const App: React.FC = () => {
   return (
@@ -20,7 +21,8 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
-      <TIckerListContainer />
+      <TickerListContainer />
+      <StarredListContainer />
     </div>
   );
 }

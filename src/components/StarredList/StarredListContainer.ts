@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { AppState } from '../../reducers/appState';
-import { TickerList } from './TickerList';
 import { tickerService } from '../../services';
+import { StarredList } from './StarredList';
 
 const mapStateToProps = (state: AppState) => ({
-    tickers: state.tickers
+    tickerDetails: state.tickerDetails
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    fetchTickers: (url: string) => dispatch(tickerService.fetchTickers(url))
+    fetchTickerDetails: (url: string) => dispatch(tickerService.fetchTickerDetails(url))
 });
 
-export const TickerListContainer = connect(
+export const StarredListContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TickerList);
+)(StarredList);
