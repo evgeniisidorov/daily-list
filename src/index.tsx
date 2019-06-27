@@ -9,7 +9,7 @@ import configureStore from './store';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'ionicons/dist/css/ionicons.min.css'
 
-const store = configureStore({tickers: [], tickerDetails: []});
+const store = configureStore({tickers: [], tickerDetails: [], starredTickers: {}});
 
 ReactDOM.render(
     <Provider store={store}>

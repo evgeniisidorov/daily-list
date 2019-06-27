@@ -22,8 +22,16 @@ code {
         &-button {
             display: flex;
             align-items: center;
+        &-hide-star {
+            display: none;
+        }
     }
   }
+  &:hover {
+    .ticker-card-content-button-hide-star {
+        display: block;
+    }
+}
 }
 
 .star-button {

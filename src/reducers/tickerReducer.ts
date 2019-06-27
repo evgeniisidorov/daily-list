@@ -3,17 +3,24 @@ import { AppState } from './appState';
 
 const defaultState: AppState = {
     tickers: [],
-    tickerDetails: []
+    tickerDetails: [],
+    starredTickers: {}
 };
 
 const tickerReducer = (state = defaultState, action: TickerAction): AppState => {
     switch (action.type) {
         case ACTIONS.Types.FETCH_TICKERS:
-            console.log(action);
             return { ...state, tickers: action.result };
         case ACTIONS.Types.FETCH_TICKER_DETAILS:
-            console.log(action);
             return { ...state, tickerDetails: [ ...state.tickerDetails, ...action.result ] };
+        case ACTIONS.Types.STAR_TICKER:
+            let starredSymbols: any = {};
+            starredSymbols[action.result] = true;
+            return {...state, starredTickers: {...state.starredTickers,...starredSymbols}};
+        case ACTIONS.Types.UNSTAR_TICKER:
+            let unstaredSymbols: any = {}
+            unstaredSymbols[action.result] = undefined;
+            return {...state, starredTickers: {...state.starredTickers, ...unstaredSymbols}};
         default:
             return state;
     }

@@ -3,6 +3,8 @@ import actions from "../reducers/actions";
 export interface ITickerService {
     fetchTickers: (url: string) => any;
     fetchTickerDetails: (url: string) => any;
+    starTicker: (symbol: string) => any;
+    unstarTicker: (symbol: string) => any;
 }
 
 export class TickerServiceImplementation implements ITickerService {
@@ -56,4 +58,16 @@ export class TickerServiceImplementation implements ITickerService {
             .then((items ) => dispatch(actions.fetchTickerDetails(items)))
         }
     }
+
+    starTicker = (symbol: string) => {
+        return (dispatch: any) => {
+            return dispatch(actions.starTicker(symbol));
+        } 
+    }
+
+    unstarTicker = (symbol: string) => {
+        return (dispatch: any) => {
+            return dispatch(actions.unstarTicker(symbol));
+        } 
+    } 
 }

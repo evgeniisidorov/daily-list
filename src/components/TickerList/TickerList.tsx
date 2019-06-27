@@ -6,7 +6,10 @@ import { StarButton } from '../StarButton/StarButton';
 
 export interface TickerListProps {
     tickers: TickerSymbol[];
+    starredTickers: { [symbol: string]: boolean };
     fetchTickers(url: string): void;
+    starTicker(symbol: string): void;
+    unstarTicker(symbol: string): void;
 }
 
 interface TickerListState {
@@ -29,7 +32,9 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
 
     constructor(props: TickerListProps) {
         super(props);
-        this.state = { tickerSearchValue: "" }
+        this.state = { tickerSearchValue: "" };
+        this.starTicker = this.starTicker.bind(this);
+        this.unstarTicker = this.unstarTicker.bind(this);
     }
 
     public componentDidMount() {
@@ -79,7 +84,18 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
                                 <h6>{x.name}</h6>
                             </div>
                             <div className="ticker-card-content-button">
-                                {StarButton(false)}
+                                <div className={
+                                    !this.props.starredTickers[x.symbol] &&
+                                    'ticker-card-content-button-hide-star' || ""
+                                } >
+                                    {StarButton(!this.props.starredTickers[x.symbol], () => {
+                                        if (this.props.starredTickers[x.symbol]) {
+                                            this.unstarTicker(x.symbol);
+                                        } else {
+                                            this.starTicker(x.symbol);
+                                        }
+                                    })}
+                                </div>
                             </div>
                         </div>
 
@@ -87,5 +103,13 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
                 })}
             </div>
         </div>
+    }
+
+    private starTicker(symbol: string): void {
+        this.props.starTicker && this.props.starTicker(symbol);
+    }
+
+    private unstarTicker(symbol: string): void {
+        this.props.unstarTicker && this.props.unstarTicker(symbol);
     }
 }
