@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'ionicons/dist/css/ionicons.min.css'
 
 const store = configureStore({tickers: [], tickerDetails: []});
 

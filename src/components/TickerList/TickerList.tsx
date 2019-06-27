@@ -2,6 +2,7 @@ import React from 'react';
 import Urls from '../../services/urls';
 import Fuse, { FuseOptions } from 'fuse.js';
 import { TickerSymbol } from '../../models/models';
+import { StarButton } from '../StarButton/StarButton';
 
 export interface TickerListProps {
     tickers: TickerSymbol[];
@@ -53,11 +54,38 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
                     <button className="btn btn-outline-secondary" type="button">Search</button>
                 </div>
             </div>
-            <ul>
+            <div>
                 {filteredTickers && filteredTickers.slice(0, 10).map((x, index) => {
-                    return <li key={`ticker-${index}`}>{x.symbol} - {x.name}</li>
+                    return <div
+                        style={{
+                            marginBottom: 8
+                        }}
+                        key={`ticker-symbol-card-${x.symbol}`}
+                        className="ticker-symbol"
+                    >
+                        {index !== 0 &&
+                            <div
+                                className="separator"
+                                style={{
+                                    marginLeft: 8,
+                                    marginRight: 8,
+                                    marginBottom: 8,
+                                    borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+                                }}
+                            />}
+                        <div className="ticker-card-content">
+                            <div className="ticker-card-content-main">
+                                <h5>{x.symbol}</h5>
+                                <h6>{x.name}</h6>
+                            </div>
+                            <div className="ticker-card-content-button">
+                                {StarButton(false)}
+                            </div>
+                        </div>
+
+                    </div>
                 })}
-            </ul>
+            </div>
         </div>
     }
 }
