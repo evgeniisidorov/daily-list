@@ -41,7 +41,8 @@ export class TickerServiceImplementation implements ITickerService {
         return fetch(url, {
             cache: 'no-store'
         }).then(this.validateResponse)
-            .then((response) => this.readData(response, responseType));
+            .then((response) => this.readData(response, responseType))
+            .catch(error => console.log('failure'));
     }
 
     fetchTickers = (url: string) => {
@@ -52,22 +53,22 @@ export class TickerServiceImplementation implements ITickerService {
         }
     }
 
-    fetchTickerDetails = (url: string) =>{
+    fetchTickerDetails = (url: string) => {
         return (dispatch: any) => {
             return this.fetchUrl(url)
-            .then((items ) => dispatch(actions.fetchTickerDetails(items)))
+                .then((items) => dispatch(actions.fetchTickerDetails(items)))
         }
     }
 
     starTicker = (symbol: string) => {
         return (dispatch: any) => {
             return dispatch(actions.starTicker(symbol));
-        } 
+        }
     }
 
     unstarTicker = (symbol: string) => {
         return (dispatch: any) => {
             return dispatch(actions.unstarTicker(symbol));
-        } 
-    } 
+        }
+    }
 }

@@ -4,11 +4,14 @@ import { tickerService } from '../../services';
 import { StarredList } from './StarredList';
 
 const mapStateToProps = (state: AppState) => ({
-    tickerDetails: state.tickerDetails
+    tickers: state.tickers,
+    tickerDetails: state.tickerDetails,
+    starredTickers: state.starredTickers
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    fetchTickerDetails: (url: string) => dispatch(tickerService.fetchTickerDetails(url))
+    fetchTickerDetails: (url: string) => dispatch(tickerService.fetchTickerDetails(url)),
+    unstarTicker: (symbol: string) => dispatch(tickerService.unstarTicker(symbol))
 });
 
 export const StarredListContainer = connect(
