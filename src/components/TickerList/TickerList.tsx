@@ -12,7 +12,7 @@ export class TickerList extends React.Component<TickerListProps> {
     }
     public render(): JSX.Element {
         return <div>
-            <p>Tickers</p>
+            <h2>Tickers</h2>
             <ul>
                 {this.props.tickers && this.props.tickers.slice(0, 10).map((x, index) => {
                     return <li key={`ticker-${index}`}>{x.symbol}</li>
