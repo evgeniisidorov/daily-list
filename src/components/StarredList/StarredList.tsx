@@ -1,8 +1,9 @@
 import React from 'react';
 import Urls from '../../services/urls';
+import { TickerDetails } from '../../models/models';
 
 export interface StarredListProps {
-    tickerDetails: any[];
+    tickerDetails: TickerDetails[];
     fetchTickerDetails(url: string): void;
 }
 

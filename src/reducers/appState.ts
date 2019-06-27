@@ -1,4 +1,6 @@
+import { TickerSymbol, TickerDetails } from "../models/models";
+
 export interface AppState {
-    tickers: any[];
-    tickerDetails: any[];
+    tickers: TickerSymbol[];
+    tickerDetails: TickerDetails[];
 }
