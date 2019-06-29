@@ -1,8 +1,9 @@
 import React from 'react';
 import Urls from '../../services/urls';
 import Fuse, { FuseOptions } from 'fuse.js';
-import { TickerSymbol } from '../../models/models';
+import { TickerSymbol, TickerDetails } from '../../models/models';
 import { StarButton } from '../StarButton/StarButton';
+import { TickerCard } from '../TickerCard/TickerCard';
 
 export interface TickerListProps {
     tickers: TickerSymbol[];
@@ -35,6 +36,7 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
         this.state = { tickerSearchValue: "" };
         this.starTicker = this.starTicker.bind(this);
         this.unstarTicker = this.unstarTicker.bind(this);
+        this.onStarButtonClick = this.onStarButtonClick.bind(this);
     }
 
     public componentDidMount() {
@@ -78,31 +80,24 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
                                     borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
                                 }}
                             />}
-                        <div className="ticker-card-content">
-                            <div className="ticker-card-content-main">
-                                <h5>{x.symbol}</h5>
-                                <h6>{x.name}</h6>
-                            </div>
-                            <div className="ticker-card-content-button">
-                                <div className={
-                                    !this.props.starredTickers[x.symbol] &&
-                                    'ticker-card-content-button-hide-star' || ""
-                                } >
-                                    {StarButton(!this.props.starredTickers[x.symbol], () => {
-                                        if (this.props.starredTickers[x.symbol]) {
-                                            this.unstarTicker(x.symbol);
-                                        } else {
-                                            this.starTicker(x.symbol);
-                                        }
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-
+                        <TickerCard
+                            symbol={x.symbol}
+                            name={x.name}
+                            isStarred={!this.props.starredTickers[x.symbol]}
+                            onStarButtonClick={() => this.onStarButtonClick(x)}
+                        />
                     </div>
                 })}
             </div>
         </div>
+    }
+
+    private onStarButtonClick(x: TickerSymbol): void {
+        if (this.props.starredTickers[x.symbol]) {
+            this.unstarTicker(x.symbol);
+        } else {
+            this.starTicker(x.symbol);
+        }
     }
 
     private starTicker(symbol: string): void {
