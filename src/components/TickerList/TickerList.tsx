@@ -1,8 +1,7 @@
 import React from 'react';
 import Urls from '../../services/urls';
 import Fuse, { FuseOptions } from 'fuse.js';
-import { TickerSymbol, TickerDetails } from '../../models/models';
-import { StarButton } from '../StarButton/StarButton';
+import { TickerSymbol } from '../../models/models';
 import { TickerCard } from '../TickerCard/TickerCard';
 
 export interface TickerListProps {

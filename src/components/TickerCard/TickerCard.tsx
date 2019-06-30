@@ -22,7 +22,10 @@ export class TickerCard extends React.Component<TickerCardProps> {
                     <div className={
                         this.props.isStarred ? 'ticker-card-content-button-hide-star' : ''
                     } >
-                        {StarButton(this.props.isStarred, () => this.props.onStarButtonClick())}
+                        <StarButton
+                            isStarred={this.props.isStarred}
+                            onClick={() => this.props.onStarButtonClick()}
+                        />
                     </div>
                 </div>
             </div>
