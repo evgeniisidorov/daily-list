@@ -1,5 +1,7 @@
 {
   "name": "daily-list",
+  "author": "Evgenii Sidorov",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
