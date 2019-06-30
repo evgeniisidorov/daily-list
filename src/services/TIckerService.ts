@@ -30,7 +30,7 @@ export class TickerServiceImplementation implements ITickerService {
             case 'text': return response.text();
             case 'blob': return response.blob();
             case 'json': return response.json();
-            default: throw `Unknown response type '${type}'`;
+            default: throw new Error(`Unknown response type '${type}'`);
         }
     }
 

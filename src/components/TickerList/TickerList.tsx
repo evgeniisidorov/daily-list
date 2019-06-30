@@ -31,9 +31,13 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
         ]
     };
 
+    private readonly itemsPerPage: number = 10;
+
     constructor(props: TickerListProps) {
         super(props);
-        this.state = { tickerSearchValue: "" };
+        this.state = {
+            tickerSearchValue: ""
+        };
         this.starTicker = this.starTicker.bind(this);
         this.unstarTicker = this.unstarTicker.bind(this);
         this.onStarButtonClick = this.onStarButtonClick.bind(this);
@@ -61,8 +65,9 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
                     <button className="btn btn-outline-secondary" type="button">Search</button>
                 </div>
             </div>
+            {this.state.tickerSearchValue && <span>{`Found ${filteredTickers.length} tickers`}</span>}
             <div>
-                {filteredTickers && filteredTickers.slice(0, 10).map((x, index) => {
+                {filteredTickers && filteredTickers.slice(0, this.itemsPerPage).map((x, index) => {
                     return <div
                         key={`ticker-symbol-card-${x.symbol}`}
                         className="ticker-symbol"
