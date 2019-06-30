@@ -1,5 +1,4 @@
 import React from 'react';
-import Urls from '../../services/urls';
 import { TickerDetails, TickerSymbol } from '../../models/models';
 import * as _ from 'lodash';
 import { TickerCard } from '../TickerCard/TickerCard';
