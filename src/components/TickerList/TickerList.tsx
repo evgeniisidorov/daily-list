@@ -65,9 +65,6 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
             <div>
                 {filteredTickers && filteredTickers.slice(0, 10).map((x, index) => {
                     return <div
-                        style={{
-                            marginBottom: 8
-                        }}
                         key={`ticker-symbol-card-${x.symbol}`}
                         className="ticker-symbol"
                     >

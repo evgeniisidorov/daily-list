@@ -12,7 +12,8 @@ code {
     monospace;
 }
 
-.ticker-symbol {
+.ticker-symbol, .ticker-detail {
+    margin-bottom: 8px;
     .ticker-card-content {
         display: flex;
         flex-direction: row;
@@ -30,8 +31,8 @@ code {
   &:hover {
     .ticker-card-content-button-hide-star {
         display: block;
+        }
     }
-}
 }
 
 .star-button {

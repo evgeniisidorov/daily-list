@@ -45,11 +45,8 @@ export class StarredList extends React.Component<StarredListProps> {
             <div>
                 {starredTickerDetails.map((x, index) => {
                     return <div
-                        style={{
-                            marginBottom: 8
-                        }}
                         key={`ticker-details-card-${x.symbol}`}
-                        className="ticker-symbol"
+                        className="ticker-detail"
                     >
                         {index !== 0 && <div className="separator" />}
                         <TickerCard
