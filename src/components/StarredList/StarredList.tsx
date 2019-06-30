@@ -12,6 +12,11 @@ export interface StarredListProps {
 }
 
 export class StarredList extends React.Component<StarredListProps> {
+    constructor(props: StarredListProps) {
+        super(props);
+        this.unstarTicker = this.unstarTicker.bind(this);
+    }
+
     public render(): JSX.Element {
         const starredSymbols: string[] = _.map(
             _.filter(
@@ -54,11 +59,17 @@ export class StarredList extends React.Component<StarredListProps> {
                             name={x.name}
                             price={x.price}
                             isStarred={!this.props.starredTickers[x.symbol]}
-                            onStarButtonClick={() => null}
+                            onStarButtonClick={() => this.unstarTicker(x.symbol)}
                         />
                     </div>;
                 })}
             </div>
         </div>
+    }
+
+    private unstarTicker(symbol: string): void {
+        if (this.props.unstarTicker) {
+            this.props.unstarTicker(symbol);
+        }
     }
 }

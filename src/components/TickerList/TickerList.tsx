@@ -90,12 +90,17 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
     }
 
     private starTicker(symbol: string): void {
-        this.props.fetchTickerDetails && this.props.starredTickers &&
+        if (this.props.fetchTickerDetails) {
             this.props.fetchTickerDetails(Urls.getTickerDetails([symbol]));
-        this.props.starTicker && this.props.starTicker(symbol);
+        }
+        if (this.props.starTicker) {
+            this.props.starTicker(symbol);
+        }
     }
 
     private unstarTicker(symbol: string): void {
-        this.props.unstarTicker && this.props.unstarTicker(symbol);
+        if (this.props.unstarTicker) {
+            this.props.unstarTicker(symbol);
+        }
     }
 }
