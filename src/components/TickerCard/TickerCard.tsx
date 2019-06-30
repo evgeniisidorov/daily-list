@@ -16,12 +16,11 @@ export class TickerCard extends React.Component<TickerCardProps> {
                 <div className="ticker-card-content-main">
                     <h5>{this.props.symbol}</h5>
                     <h6>{this.props.name}</h6>
-                    {this.props.price && <p>{this.props.price}</p>}
+                    {this.props.price && <span>{this.props.price}</span>}
                 </div>
                 <div className="ticker-card-content-button">
                     <div className={
-                        this.props.isStarred &&
-                        'ticker-card-content-button-hide-star' || ""
+                        this.props.isStarred ? 'ticker-card-content-button-hide-star' : ''
                     } >
                         {StarButton(this.props.isStarred, () => this.props.onStarButtonClick())}
                     </div>

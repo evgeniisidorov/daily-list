@@ -11,6 +11,7 @@ export interface TickerListProps {
     fetchTickers(url: string): void;
     starTicker(symbol: string): void;
     unstarTicker(symbol: string): void;
+    fetchTickerDetails(url: string): void;
 }
 
 interface TickerListState {
@@ -70,16 +71,7 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
                         key={`ticker-symbol-card-${x.symbol}`}
                         className="ticker-symbol"
                     >
-                        {index !== 0 &&
-                            <div
-                                className="separator"
-                                style={{
-                                    marginLeft: 8,
-                                    marginRight: 8,
-                                    marginBottom: 8,
-                                    borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
-                                }}
-                            />}
+                        {index !== 0 && <div className="separator" />}
                         <TickerCard
                             symbol={x.symbol}
                             name={x.name}
@@ -101,6 +93,8 @@ export class TickerList extends React.Component<TickerListProps, TickerListState
     }
 
     private starTicker(symbol: string): void {
+        this.props.fetchTickerDetails && this.props.starredTickers &&
+            this.props.fetchTickerDetails(Urls.getTickerDetails([symbol]));
         this.props.starTicker && this.props.starTicker(symbol);
     }
 

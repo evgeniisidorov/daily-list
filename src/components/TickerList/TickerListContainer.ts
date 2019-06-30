@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch: any) => ({
     fetchTickers: (url: string) => dispatch(tickerService.fetchTickers(url)),
     starTicker: (symbol: string) => dispatch(tickerService.starTicker(symbol)),
     unstarTicker: (symbol: string) => dispatch(tickerService.unstarTicker(symbol)),
+    fetchTickerDetails: (url: string) => dispatch(tickerService.fetchTickerDetails(url))
 });
 
 export const TickerListContainer = connect(

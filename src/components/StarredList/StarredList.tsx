@@ -2,21 +2,16 @@ import React from 'react';
 import Urls from '../../services/urls';
 import { TickerDetails, TickerSymbol } from '../../models/models';
 import * as _ from 'lodash';
+import { TickerCard } from '../TickerCard/TickerCard';
 
 export interface StarredListProps {
     tickers: TickerSymbol[];
     tickerDetails: TickerDetails[];
     starredTickers: { [symbol: string]: boolean };
-    fetchTickerDetails(url: string): void;
     unstarTicker(symbol: string): void;
 }
 
 export class StarredList extends React.Component<StarredListProps> {
-    public componentDidUpdate() {
-        this.props.fetchTickerDetails && this.props.starredTickers &&
-            this.props.fetchTickerDetails(Urls.getTickerDetails(Object.keys(this.props.starredTickers)));
-    }
-
     public render(): JSX.Element {
         const starredSymbols: string[] = _.map(
             _.filter(
@@ -40,28 +35,33 @@ export class StarredList extends React.Component<StarredListProps> {
                                 name: tickerSymbol.name,
                                 price: tickerDetails.price
                             };
-                        } else {
-                            return undefined;
                         }
-                    } else {
-                        return undefined;
                     }
+                    return undefined;
                 }));
 
         return <div>
             <h2>Starred tickers</h2>
             <div>
-                {starredTickerDetails.map(x => {
-                    return <div>
-                        {x.name}
-                        {x.symbol}
-                        {x.price}
-                    </div>
+                {starredTickerDetails.map((x, index) => {
+                    return <div
+                        style={{
+                            marginBottom: 8
+                        }}
+                        key={`ticker-details-card-${x.symbol}`}
+                        className="ticker-symbol"
+                    >
+                        {index !== 0 && <div className="separator" />}
+                        <TickerCard
+                            symbol={x.symbol}
+                            name={x.name}
+                            price={x.price}
+                            isStarred={!this.props.starredTickers[x.symbol]}
+                            onStarButtonClick={() => null}
+                        />
+                    </div>;
                 })}
             </div>
-            <ul>
-                {starredTickerDetails.length}
-            </ul>
         </div>
     }
 }

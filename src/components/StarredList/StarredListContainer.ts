@@ -10,7 +10,6 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    fetchTickerDetails: (url: string) => dispatch(tickerService.fetchTickerDetails(url)),
     unstarTicker: (symbol: string) => dispatch(tickerService.unstarTicker(symbol))
 });
 
